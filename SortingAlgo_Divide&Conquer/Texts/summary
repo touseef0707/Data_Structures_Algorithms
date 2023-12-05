@@ -1,0 +1,23 @@
+## Summary and Exercises
+
+We've covered the following sorting algorithms in this tutorial:
+
+1. Bubble sort
+2. Insertion sort
+3. Merge sort
+4. Quick sort
+
+There are several other sorting algorithms, and most languages provide
+library functions for sorting that use a hybrid approach depending on the
+size and type of element in the list/array.
+
+Try out some problems on sorting and divide-n-conquer here:
+
+* https://leetcode.com/tag/sort/
+* https://www.techiedelight.com/sorting-interview-questions/
+* [HackerRank](https://www.hackerrank.com/domains/algorithms?filters%5Bsubdomains%5D%5B%5D=arrays-and-sorting)
+* https://leetcode.com/tag/divide-and-conquer/
+* https://www.geeksforgeeks.org/divide-and-conquer/
+
+Use this problem solving template:
+https://jovian.ai/aakashns/python-problem-solving-template

@@ -1,0 +1,135 @@
+-----Self-Balancing Binary Trees and AVL Trees-----
+
+A self-balancing binary tree* remains balanced after every insertion or
+deletion. Several decades of research has gone into creating self-balancing
+binary trees, and many approaches have been devised e.g. B-trees,
+Red Black Trees and  AVL (Adelson-Velsky Landis) trees.
+
+We'll take a brief look at AVL trees. Self-balancing in AVL trees is achieved
+by tracking the *balance factor* (difference between the height of the left
+subtree and the right subtree) for each node and *rotating* unbalanced subtrees
+along the path of insertion/deletion to balance them.
+
+In a balanced BST, the balance factor of each node is either 0, -1, or 1.
+When we perform an insertion, then the balance factor of certain nodes along
+the path of insertion may change to 2 or -2. Those nodes can be "rotated"
+one-by-one to bring the balance factor back to 1, 0 or -1.
+
+There are 4 different scenarios for balancing, two of which require a single
+rotation, while the others require 2 rotations:
+
+
+Since each rotation takes constant time, and at most `log N` rotations may be
+required, this operation is far more efficient than creating a balanced binary
+tree from scratch, allowing insertion and deletion to be performed in
+O (log N) time. Here are some references for AVL Trees:
+
+* Explanation of the various cases: https://youtu.be/jDM6_TnYIqE?t=482
+* Implementation: https://www.geeksforgeeks.org/avl-tree-set-1-insertion/
+
+-----------------------------------------
+>> Insertion
+To make sure that the given tree remains AVL after every insertion, we must augment the
+standard BST insert operation to perform some re-balancing.
+Following are two basic operations that can be performed to re-balance a BST without
+violating the BST property (keys(left) < key(root) < keys(right)).
+1) Left Rotation
+2) Right Rotation
+
+
+T1, T2 and T3 are subtrees of the tree
+rooted with y (on the left side) or x (on
+the right side)
+     y                               x
+    / \     Right Rotation          /  \
+   x   T3   - - - - - - - >        T1   y
+  / \       < - - - - - - -            / \
+ T1  T2     Left Rotation            T2  T3
+Keys in both of the above trees follow the
+following order
+ keys(T1) < key(x) < keys(T2) < key(y) < keys(T3)
+So BST property is not violated anywhere.
+
+----Steps to follow for insertion----
+Let the newly inserted node be w
+1) Perform standard BST insert for w.
+2) Starting from w, travel up and find the first unbalanced node. Let z be the first
+   unbalanced node, y be the child of z that comes on the path from w to z and x be the
+   grandchild of z that comes on the path from w to z.
+3) Re-balance the tree by performing appropriate rotations on the subtree rooted with z.
+   There can be 4 possible cases that needs to be handled as x, y and z can be arranged
+   in 4 ways. Following are the possible 4 arrangements:
+
+a) y is left child of z and x is left child of y (Left Left Case)
+b) y is left child of z and x is right child of y (Left Right Case)
+c) y is right child of z and x is right child of y (Right Right Case)
+d) y is right child of z and x is left child of y (Right Left Case)
+
+Following are the operations to be performed in above mentioned 4 cases. In all of the
+cases, we only need to re-balance the subtree rooted with z and the complete tree
+becomes balanced as the height of subtree (After appropriate rotations) rooted with z
+becomes same as it was before insertion.
+
+a) Left Left Case
+
+T1, T2, T3 and T4 are subtrees.
+         z                                      y
+        / \                                   /   \
+       y   T4      Right Rotate (z)          x      z
+      / \          - - - - - - - - ->      /  \    /  \
+     x   T3                               T1  T2  T3  T4
+    / \
+  T1   T2
+
+b) Left Right Case
+
+     z                               z                           x
+    / \                            /   \                       /   \
+   y   T4  Left Rotate (y)        x    T4  Right Rotate(z)    y      z
+  / \      - - - - - - - - ->    /  \      - - - - - - - ->  / \    / \
+T1   x                          y    T3                    T1  T2 T3  T4
+    / \                        / \
+  T2   T3                    T1   T2
+
+c) Right Right Case
+
+  z                                y
+ /  \                            /   \
+T1   y     Left Rotate(z)       z      x
+    /  \   - - - - - - - ->    / \    / \
+   T2   x                     T1  T2 T3  T4
+       / \
+     T3  T4
+
+d) Right Left Case
+
+   z                            z                            x
+  / \                          / \                          /  \
+T1   y   Right Rotate (y)    T1   x      Left Rotate(z)   z      y
+    / \  - - - - - - - - ->     /  \   - - - - - - - ->  / \    / \
+   x   T4                      T2   y                  T1  T2  T3  T4
+  / \                              /  \
+T2   T3                           T3   T4
+
+
+---------------------------------------------------------------------------------
+
+Implementation
+Following is the implementation for AVL Tree Insertion.
+The following implementation uses the recursive BST insert to insert a new node.
+In the recursive BST insert, after insertion, we get pointers to all ancestors one
+by one in a bottom-up manner. So we don’t need parent pointer to travel up.
+The recursive code itself travels up and visits all the ancestors of the newly
+inserted node.
+
+1) Perform the normal BST insertion.
+2) The current node must be one of the ancestors of the newly inserted node.
+   Update the height of the current node.
+3) Get the balance factor (left subtree height – right subtree height) of the current
+   node.
+4) If balance factor is greater than 1, then the current node is unbalanced and we
+   are either in Left Left case or left Right case. To check whether it is left left
+   case or not, compare the newly inserted key with the key in left subtree root.
+5) If balance factor is less than -1, then the current node is unbalanced and we are
+   either in Right Right case or Right-Left case. To check whether it is Right Right
+   case or not, compare the newly inserted key with the key in right subtree root.

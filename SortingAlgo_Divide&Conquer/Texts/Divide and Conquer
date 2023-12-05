@@ -1,0 +1,47 @@
+##### DIVIDE AND CONQUER
+
+To performing sorting more efficiently, we'll apply a strategy called
+**Divide and Conquer**, which has the following general steps:
+
+1. Divide the inputs into two roughly equal parts.
+2. Recursively solve the problem individually for each of the two parts.
+3. Combine the results to solve the problem for the original inputs.
+4. Include terminating conditions for small or indivisible inputs.
+
+Here's a visual representation of the strategy:
+
+![](https://www.educative.io/api/edpresso/shot/5327356208087040/image/6475288173084672)
+
+### Merge Sort
+
+Here's a step-by-step description for merge sort:
+
+1. If the input list is empty or contains just one element, it is already sorted.
+   Return it.
+2. If not, divide the list of numbers into two roughly equal parts.
+3. Sort each part recursively using the merge sort algorithm. You'll get back
+   two sorted lists.
+4. Merge the two sorted lists to get a single sorted list
+
+Can you guess how the "merge" operation step 4 works?
+Hint: Watch this animation: https://youtu.be/GW0USDwhBgo?t=28
+
+> **QUESTION 3**: Write a function to merge two sorted arrays.
+
+Try to explain how the merge operation works in your own words below:
+
+
+""""""""""""own words""""""""""""""
+1. Merge operation takes two sorted arrays
+2. compare the first element of both the arrays
+3. sort it and merge
+4. repeat steps 2, 3 till the whole list is merged
+
+Two merge two sorted arrays, we can repeatedly compare the two least elements
+of each array, and copy over the smaller one into a new array.
+
+To find the overall complexity of merge_sort, we simply need to count how many
+times the merge function was invoked and the size of the input list for each
+invocation. Here's how all the sub-problems can be visualized:
+
+

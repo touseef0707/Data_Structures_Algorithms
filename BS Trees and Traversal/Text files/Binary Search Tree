@@ -1,0 +1,42 @@
+Binary Search Tree (BST)
+A binary search tree or BST is a binary tree that satisfies the following conditions:
+
+-> The left subtree of any node only contains nodes with keys less than the node's key.
+-> The right subtree of any node only contains nodes with keys greater than the node's key.
+
+----Insertion----
+We use the BST-property to perform insertion efficiently:
+
+1. Starting from the root node, we compare the key to be inserted with the
+   current node's key.
+2. If the key is smaller, we recursively insert it in the left subtree
+   (if it exists) or attach it as as the left child if no left subtree exists.
+3. If the key is larger, we recursively insert it in the right subtree
+   (if it exists) or attach it as as the right child if no right subtree exists.
+
+----Finding----
+We can follow a recursive strategy similar to insertion to find the node with a
+given key within a BST.
+
+----Balanced Binary Trees----
+Here's a recursive strategy to check if a BST is balanced:
+1. Ensure that the left subtree is balanced.
+2. Ensure that the right subtree is balanced.
+3. Ensure that the difference between heights of left subtree and right subtree is not more than 1.
+
+After every insertion, we can balance the tree. This way the tree will remain balanced.
+
+Complexity of the various operations in a balanced BST:
+
+* Insert - O(log N) + O(N) = O(N)
+* Find - O(log N)
+* Update - O(log N)
+* List all - O(N)
+
+Thus, find and update from a balanced binary search tree is 300,000 times
+faster than our original solution. To speed up insertions, we may choose to
+perform the balancing periodically (e.g. once every 1000 insertions).
+This way, most insertions will be O (log N), but every 1000th insertion will
+take a few seconds. Another options is to rebalance the tree periodically at
+the end of every hour.
+

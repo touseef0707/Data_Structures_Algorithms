@@ -1,0 +1,22 @@
+The fact that merge sort requires allocating additional space as large as the
+input itself makes it somewhat slow in practice because memory allocation is
+far more expensive than comparisons or swapping.
+
+### Quicksort
+
+To overcome the space inefficiencies of merge sort, we'll study another
+divide-and-conquer based sorting algorithm called **quicksort**, which works as
+follows:
+
+1. If the list is empty or has just one element, return it. It's already sorted.
+2. Pick a random element from the list. This element is called a _pivot_.
+3. Reorder the list so that all elements with values less than or equal to the
+   pivot come before the pivot, while all elements with values greater than the
+   pivot come after it. This operation is called _partitioning_.
+4. The pivot element divides the array into two parts which can be sorted
+   independently by making a recursive call to quicksort.
+
+The key observation here is that after the partition, the pivot element is at
+its right place in the sorted array, and the two parts of the array can be
+sorted independently in-place.
+

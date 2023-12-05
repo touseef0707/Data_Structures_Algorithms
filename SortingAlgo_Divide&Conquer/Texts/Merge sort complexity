@@ -1,0 +1,25 @@
+To find the overall complexity of merge_sort, we simply need to count how many
+times the merge function was invoked and the size of the input list for each
+invocation. Here's how all the sub-problems can be visualized:
+
+Counting from the top and starting from 0, the k'th level of the above tree
+involves 2^k invocations of merge with sub-lists of size roughly (n/2^k), where
+n is the size of the original input list. Therefore the total number of
+comparisons at each level of the tree is 2^k * n/2^k = n.
+
+Thus, if the height of the tree is h, the total number of comparisons is n*h.
+Since there are n sublists of size 1 at the lowest level, it follows that
+2^(h-1) = n i.e. h = log n + 1.
+Thus the time complexity of the merge sort algorithms is O(n logn).
+
+As we already saw, it took just 50 ms to sort an array of 10,000 elements.
+Even an array of 1 million elements will take only a few seconds to be sorted.
+
+------Space Complexity - O(n)
+
+###########################################################################
+There are several extensions and variations and extensions of merge sort:
+
+K-way merge sort: https://en.wikipedia.org/wiki/K-way_merge_algorithm
+Counting inversions in an array: https://www.geeksforgeeks.org/counting-inversions/
+Merge sort and insertion sort hybrids: https://en.wikipedia.org/wiki/Timsort

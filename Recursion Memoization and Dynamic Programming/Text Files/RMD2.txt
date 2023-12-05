@@ -1,0 +1,57 @@
+""""""
+"""
+KNAPSACK PROBLEM
+
+Problem Statement:
+--> You're in charge of selecting a football team from a large pool of players.
+Each player has a cost, and a rating. You have a limited budget. What is the highest
+total rating of a team that fits within your budget. Assume that there is no minimum
+or maximum team size.
+
+General Problem statement:
+--> Given n elements, each of which has a weight and a profit, determine the maximum
+profit that can be obtained by selecting a subset of the elements weighing no more than
+w.
+
+        Profit  [2, 3, 1, 5, 4, 7]
+        Weight  [4, 5, 1, 3, 2, 5]
+        capacity  15
+
+"""
+"""
+--> RECURSIVE SOLUTION
+
+1. We will write a recursive function that computes
+max_profit(weights[idx:], profits[idx:], capacity), with idx starting from 0.
+
+2. If weights[idx] > capacity, the current element cannot be selected, so the maximum
+profit is the same as max_profit(weights[idx+1:], profits[idx+1:], capacity).
+
+3. Otherwise, there are two possibilities: we either pick weights[idx] or don't.
+we can recursively compute the maximum
+  -> a) If we don't pick weights[idx], once again the maximum profit for this case is
+        max_profit(weights[idx+1:], profits[idx+1:], capacity)
+  -> b) If we pick weights[idx], the maximum profit for this case is
+  profits[idx]+ max_profit(weights[idx+1], profits[idx+1:], capacity - weights[idx])
+
+4. If weights[idx:] is empty, the maximum profit for this case is 0.
+
+--> DYNAMIC SOLUTION
+
+1. Create a table of size (n+1)* (capacity+1) consisting of all Os, where is n is the
+number of elements. table[i][c] represents the maximum profit that can be obtained
+using the first i elements if the maximum capacity is c.
+
+(The 0th row will contain all zeros and is not shown above.)
+2. We'll fill the table row by row and column by column. table[i][c] can be filled using
+   some values in the row above it.
+3. If weights[i]> c i.e. if the current element can is larger than capacity, then
+   table[i+1][c] is simply equal to table[i][c] (since there's no way we can pick this
+   element).
+4. If weights[i] <= c then we have two choices: to either pick the current element or
+   not to get the value of table[i+1][c]. We can compare the maximum profit for both these
+   options and pick the better one as the value of table[i][c].
+   A. If we don't pick the element with weight weights[i], then once again the maximum
+      profit is table[i][c]
+   B. If we pick the element with weight weights[i], then the maximum profit is
+      profits[i] + table[i][c-weights[i]], since we have used up some capacity.

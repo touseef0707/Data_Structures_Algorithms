@@ -1,0 +1,7 @@
+Question 1: Write a function to add an edge to a graph represented as an adjacency
+list.
+Question 2: Write a function to remove an edge from a graph represented as a
+adjacency list.
+Question 3: Write a program to check if all the nodes in a graph are connected.
+Question 4: Write a program to find the number of connected components in a graph.
+Question 5: Write a program to print the connected components in a graph.

@@ -1,0 +1,67 @@
+QUESTION 1
+As a senior backend engineer at Jovian, you are tasked with developing a fast in-memory
+data structure to manage profile information (username, name and email) for 100 million
+users. It should allow the following operations to be performed efficiently:
+
+1. Insert the profile information for a new user.
+2. Find the profile information of a user, given their username
+3. Update the profile information of a user, given their usrname
+4. List all the users of the platform, sorted by username
+You can assume that usernames are unique.
+
+----Exercise----
+Exercise: Define a function tree_to_tuple that converts a binary tree into a tuple
+representing the same tree. E.g. tree_to_tuple converts the tree created above to the
+tuple ((1, 3, None), 2, ((None, 3, 4), 5, (6, 7, 8))). Hint: Use recursion.
+
+-----Traversing a Binary Tree-----
+The following questions are frequently asked in coding interviews and assessments:
+
+QUESTION 2: Write a function to perform the inorder traversal of a binary tree.
+
+QUESTION 3: Write a function to perform the preorder traversal of a binary tree.
+
+QUESTION 4: Write a function to perform the postorder traversal of a binary tree.
+
+-----Height and Size of a Binary Tree-----
+QUESTION 5: Write a function to calculate the height/depth of a binary tree
+
+QUESTION 6: Write a function to count the number of nodes in a binary tree
+
+
+----BST----
+QUESTION 7: Write a function to check if a binary tree is a binary search tree (BST).
+
+QUESTION 8: Write a function to find the maximum key in a binary tree.
+
+QUESTION 9: Write a function to find the minimum key in a binary tree.
+
+QUESTION 10: Write a function to insert a new node into a BST.
+
+QUESTION 11: Find the value associated with a given key in a BST.
+
+QUESTION 12: Write a function to update the value associated with a
+             given key within a BST.
+
+QUESTION 13: Write a function to retrieve all the key-values pairs stored
+             in a BST in the sorted order of keys.
+
+QUESTION 14: Write a function to determine if a binary tree is balanced.
+
+QUESTION 15: Write a function to create a balanced BST from a sorted
+             list/array of key-value pairs.
+
+
+------------------------
+We've covered a lot of ground this in this tutorial, including several common interview questions. Here are a few more problems you can try out:
+
+Implement rotations and self-balancing insertion
+Implement deletion of a node from a binary search tree
+Implement deletion of a node from a BST (with balancing)
+Find the lowest common ancestor of two nodes in a tree (Hint: Use the parent property)
+Find the next node in lexicographic order for a given node
+Given a number k, find the k-th node in a BST.
+Try more questions here:
+
+https://medium.com/techie-delight/binary-tree-interview-questions-and-practice-problems-439df7e5ea1f
+https://leetcode.com/tag/tree/

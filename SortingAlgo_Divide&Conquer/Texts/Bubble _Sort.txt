@@ -1,0 +1,51 @@
+It's easy to come up with a correct solution. Here's one:
+
+1. Iterate over the list of numbers, starting from the left
+2. Compare each number with the number that follows it
+3. If the number is greater than the one that follows it, swap the two elements
+4. Repeat steps 1 to 3 till the list is sorted.
+
+We need to repeat steps 1 to 3 at most `n-1` times to ensure that the array is
+sorted. Can you explain why? Hint: After one iteration, the largest number in
+the list.
+
+This method is called BUBBLE SORT, as it causes smaller elements to *bubble*
+to the top and larger to *sink* to the bottom.
+
+## 5. Analyze the algorithm's complexity and identify inefficiencies
+
+The core operations in bubble sort are "compare" and "swap".
+To analyze the time complexity, we can simply count the total number of
+comparisons being made, since the total number of swaps will be less than
+or equal to the total number of comparisons (can you see why?).
+
+```
+for _ in range(len(nums) - 1):
+    for i in range(len(nums) - 1):
+        if nums[i] > nums[i+1]:
+            nums[i], nums[i+1] = nums[i+1], nums[i]
+```
+
+There are two loops, each of length `n-1`, where `n` is the number of elements
+in `nums`. So the total number of comparisons is
+            (n-1)*(n-1) == (n-1)^2 == (n^2)-2n+1.
+
+Expressing this in the Big O notation, we can conclude that the time
+complexity of bubble sort is O(n^2) (also known as quadratic complexity).
+
+**Exercise:** Verify that the bubble sort requires O(1) additional space.
+
+The space complexity of bubble sort is O(n), even thought it requires only
+constant/zero additional space, because the space required to store the
+inputs is also considered while calculating space complexity.
+
+As we saw from the last test, a list of 10,000 numbers takes about
+12 seconds to be sorted using bubble sort. A list of ten times the size will
+100 times longer i.e. about 20 minutes to be sorted, which is quite
+inefficient. A list of a million elements would take close to 2 days to be
+sorted.
+
+The inefficiency in bubble sort comes from the fact that we're shifting
+elements by at most one position at a time.
+
+

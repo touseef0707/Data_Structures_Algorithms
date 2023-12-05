@@ -1,0 +1,106 @@
+RMD1 problem: longest common subsequence
+"""
+RECURSIVE SOLUTION:
+
+Here's a step-by-step explanation of how this code works:
+--> Base Case:
+The function starts with a base case check. If either of the indices idx1 or idx2
+reaches the length of their respective sequences (len(seq1) or len(seq2)),
+it means we have reached the end of one of the sequences. In this case, we return 0
+because there can be no common subsequence further.
+
+--> Matching Condition:
+If the characters at the current positions idx1 and idx2 in seq1 and seq2 are equal,
+it means we have found a match in the LCS. In this case, we add 1 to the result and
+recursively call the function with incremented indices (idx1+1 and idx2+1) to continue
+looking for the LCS.
+
+--> Non-Matching Condition:
+If the characters at the current positions are not equal, we have two options:
+Option 1: We can skip the current character in seq1 and try to find the LCS in the
+remaining part of seq1 by incrementing idx1 while keeping idx2 the same.
+Option 2: We can skip the current character in seq2 and try to find the LCS in the
+remaining part of seq2 by incrementing idx2 while keeping idx1 the same.
+
+We choose the option that maximizes the LCS length by recursively calling the function
+for both options and returning the maximum of the two results.
+
+--> Returning the Result:
+The function returns the maximum of option1 and option2 as the result,
+which represents the length of the LCS between seq1 and seq2.
+
+--> Downside of this technique:
+Requires to do redundant calculations of same indices which increases time.
+In the recursive approach without memoization or dynamic programming, the function
+explores all possible combinations of characters in the two input sequences, seq1 and
+seq2. For each pair of characters, there are two recursive calls (option1 and option2).
+
+The time complexity is determined by the number of recursive calls made during the
+execution of the algorithm. In the worst case, this recursive approach explores all
+possible combinations of characters in seq1 and seq2. This leads to an exponential
+number of recursive calls, and the time complexity can be expressed as O(2^(m+n)),
+where m is the length of seq1 and n is the length of seq2.
+
+Here's why it's exponential:
+
+At each character position in seq1, we have two choices: either it contributes to the
+LCS, or it doesn't. This leads to 2 choices for the first character.
+
+For each choice in seq1, we again have 2 choices for the second character in seq1.
+
+This branching continues for all characters in seq1.
+
+Similarly, we have a similar branching factor for characters in seq2.
+
+So, for m characters in seq1 and n characters in seq2, the total number of
+recursive calls is 2^m * 2^n, which simplifies to 2^(m+n).
+"""
+
+"""
+MEMOIZATION SOLUTION:
+
+Memoization is a technique used to optimize recursive algorithms like the one you
+provided for finding the Longest Common Subsequence (LCS). It involves storing the
+results of expensive function calls and reusing them when the same inputs occur again.
+In the context of the LCS algorithm, memoization helps avoid redundant calculations by
+caching the LCS lengths for subproblems and reusing them instead of recomputing.
+"""
+
+"""
+DYNAMIC SOLUTION:
+
+Dynamic programming is another technique for solving the Longest Common Subsequence
+(LCS) problem, and it's typically more efficient than the recursive approach,
+especially for larger sequences. The dynamic programming approach uses a table to
+store intermediate results, allowing us to avoid redundant calculations.
+
+Now, let's explain how this dynamic programming solution works:
+
+-> Table Initialization:
+We create a 2D table called dp with dimensions (m+1) x (n+1), where m is the length of
+seq1 and n is the length of seq2. This table will be used to store the lengths of LCS
+for subproblems.
+
+-> Dynamic Programming Iteration:
+We use two nested loops to iterate through the sequences seq1 and seq2 from index 1 to
+their respective lengths. The indices i and j correspond to positions in seq1 and seq2.
+
+-> Filling the Table:
+For each pair of characters seq1[i-1] and seq2[j-1], we compare them:
+If they are equal (seq1[i-1] == seq2[j-1]), we increment the LCS length by 1,
+which is stored in dp[i][j]. We look at the previous diagonally adjacent cell
+dp[i-1][j-1] and add 1 to it.
+If they are not equal, we take the maximum of the LCS lengths from the cell above
+(dp[i-1][j]) and the cell to the left (dp[i][j-1]). This accounts for the case when
+the current characters do not match but contribute to the LCS by extending it from
+either of the sequences.
+
+-> Result:
+The final result, which is the length of the LCS, is stored in dp[m][n], where m and n
+are the lengths of seq1 and seq2 respectively.
+
+-> Returning the LCS Length:
+We return dp[m][n] as the length of the LCS between seq1 and seq2.
+This dynamic programming approach efficiently computes the length of the LCS by
+avoiding redundant calculations and has a time complexity of O(m * n), where m and n
+are the lengths of the input sequences.

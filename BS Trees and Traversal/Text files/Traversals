@@ -1,0 +1,21 @@
+TRAVERSAL
+
+A traversal refers to the process of visiting each node of a tree exactly once.
+Visiting a node generally refers to adding the node's key to a list. There are three
+ways to traverse a binary tree and return the list of visited keys:
+
+-> Inorder traversal
+1) Traverse the left subtree recursively inorder.
+2) Traverse the current node.
+3) Traverse the right subtree recursively inorder.
+
+-> Preorder traversal
+1) Traverse the current node.
+2) Traverse the left subtree recursively preorder.
+3) Traverse the right subtree recursively preorder.
+
+--> Postorder traversal
+1) Traverse the left subtree recursively inorder.
+2) Traverse the right subtree recursively inorder.
+3) Traverse the current node.
+

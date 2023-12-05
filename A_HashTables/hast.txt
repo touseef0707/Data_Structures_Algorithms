@@ -1,0 +1,31 @@
+"""COLLISIONS"""
+### Handling Collisions with Linear Probing
+
+As you might have wondered, multiple keys can have the same hash.
+For instance, the keys `"listen"` and `"silent"` have the same hash.
+This is referred to as _collision_. Data stored against one key may override the
+data stored against another, if they have the same hash.
+
+As you can see above, the value for the key `listen` was overwritten by the value
+for the key `silent`. Our hash table implementation is incomplete because it does
+not handle collisions correctly.
+
+To handle collisions we'll use a technique called linear probing. Here's how it
+works:
+
+1. While inserting a new key-value pair if the target index for a key is occupied
+   by another key, then we try the next index, followed by the next and so on, till
+   we reach the closest empty location.
+
+2. While finding a key-value pair, we apply the same strategy, but instead of
+   searching for an empty location, we look for a location which contains a
+   key-value pair with the matching key.
+
+2. While updating a key-value pair, we apply the same strategy, but instead of
+   searching for an empty location, we look for a location which contains a
+   key-value pair with the matching key, and update its value.
+
+
+We'll define a function called `get_valid_index`, which starts searching the data list from the index determined by the hashing function `get_index` and returns the first index which is either empty or contains a key-value pair matching the given key.
+
+**QUESTION 4: Complete the function `get_valid_index` below by following the instructions in the comments.**
